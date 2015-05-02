@@ -7,7 +7,7 @@ import com.badlogic.gdx.Game;
 public class Graficos extends Game {
 
 	private Play pantalla;
-	public static int ANCHO,ALTO;
+	public static int ANCHO,ALTO,algo;
 	
 	@Override
 	public void create() {

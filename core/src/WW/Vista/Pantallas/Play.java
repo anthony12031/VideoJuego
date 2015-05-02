@@ -22,12 +22,10 @@ public class Play implements Screen {
 	@Override
 	public void show() {
 	
-		//Inicialzar el mapa y la camara
+		//Inicialzar el mapa y la camara organiza el mapa en pantalla
 		mapa = new Mapa("Mapas/MapaUno.tmx");
 		camara = new OrthographicCamera();
 		camara.translate((float) Graficos.ANCHO/2,(float)Graficos.ALTO/2);
-	
-		
 	}
 
 	@Override
