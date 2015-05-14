@@ -4,7 +4,7 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 
-public class Mapa implements Dibujable{
+public class Mapa extends Composite implements Dibujable{
 	
 	private TiledMap map;
 	private OrthogonalTiledMapRenderer renderer; 

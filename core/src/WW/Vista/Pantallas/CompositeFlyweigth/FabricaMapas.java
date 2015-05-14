@@ -2,8 +2,9 @@ package WW.Vista.Pantallas.CompositeFlyweigth;
 
 import java.util.HashMap;
 
-public class Fabrica{
-	private static HashMap<String,Dibujable> listaMapas=new HashMap<String,Dibujable>();
+public class FabricaMapas{
+	
+	private static HashMap<String,Dibujable> listaMapas = new HashMap<String,Dibujable>();
 	
 	public static Mapa getMapa(String path, int x, int y){
 		Mapa m=(Mapa)listaMapas.get(path);
