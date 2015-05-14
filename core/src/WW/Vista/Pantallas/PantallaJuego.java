@@ -22,8 +22,6 @@ public class PantallaJuego implements Screen {
 	private Mapa mapa;
 	private static RepresentacionEnteMagico jugador;
 	public static OrthographicCamera camara;
-	private ShapeRenderer shapeRenderer;
-	public static boolean drawGrid = true;
 
 	@Override
 	public void show() {
@@ -31,14 +29,12 @@ public class PantallaJuego implements Screen {
 		mapa = FabricaMapas.getMapa(Gdx.files.internal("Mapas/MapaUno.tmx")
 				.toString(), 0, 0);
 		jugador = new RepresentacionEnteMagico(new Sprite(
-				Graficos.atlas.findRegion("mujerarriba")), 0, 0);
+				Graficos.atlas.findRegion("mujerarriba")), 100, 100);
 		camara = new OrthographicCamera();
 		camara.position.x = Graficos.ANCHO * 0.5f;
 		camara.position.y = Graficos.ALTO * 0.5f;
 		controlador = new Controlador(this);
 		Gdx.input.setInputProcessor(controlador);
-		shapeRenderer = new ShapeRenderer();
-		shapeRenderer.setProjectionMatrix(camara.combined);
 	}
 
 	@Override
@@ -50,15 +46,6 @@ public class PantallaJuego implements Screen {
 		mapa.dibujar();
 		jugador.dibujar();
 		actualizarCamara();
-
-		/*if (drawGrid) {
-			shapeRenderer.begin(ShapeType.Line);
-			shapeRenderer.setColor(Color.RED);
-			shapeRenderer.line(-Graficos.ANCHO, 0.0f, Graficos.ANCHO, 0.0f);
-			shapeRenderer.line(0.0f, -Graficos.ALTO, 0.0f, Graficos.ALTO);
-			shapeRenderer.end();
-		}*/
-
 		camara.update();
 	}
 
@@ -75,15 +62,14 @@ public class PantallaJuego implements Screen {
 			camara.position.x += posScreen.x * 0.5 - jugador.getWidth();
 		}
 
-		if (posScreen.x + jugador.getWidth() <= 0.0f) {
+		if (posScreen.x - jugador.getWidth() <= 0.0f) {
 			camara.position.x -= Graficos.ANCHO * 0.5;
 		}
 
-		if (posScreen.y + jugador.getHeight() <= 0.0f) {
+		if (posScreen.y - jugador.getHeight() <= 0.0f) {
 			camara.position.y -= Graficos.ALTO * 0.5;
 		}
 
-		// System.out.println(posScreen);
 
 	}
 
@@ -113,7 +99,6 @@ public class PantallaJuego implements Screen {
 		mapa.getRenderer().dispose();
 		Graficos.spritebatch.dispose();
 		Graficos.atlas.dispose();
-		shapeRenderer.dispose();
 	}
 
 	public RepresentacionEnteMagico getJugador() {

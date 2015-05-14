@@ -1,5 +1,5 @@
 
-personajes.png
+Personajes.png
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
@@ -17,13 +17,13 @@ mujerizquierda
   orig: 32, 33
   offset: 0, 0
   index: 1
-mujerabajo
+mujerabajoQuieta
   rotate: false
   xy: 69, 2
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
-  index: 2
+  index: -1
 mujerabajo
   rotate: false
   xy: 103, 2
@@ -31,20 +31,20 @@ mujerabajo
   orig: 32, 32
   offset: 0, 0
   index: 3
-mujerarriba
+mujerarribaQuieta
   rotate: false
   xy: 137, 2
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
-  index: 1
+  index: -1
 mujerarriba
   rotate: false
   xy: 171, 2
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
-  index: 2
+  index: 1
 mujerarriba
   rotate: false
   xy: 205, 2
@@ -52,20 +52,20 @@ mujerarriba
   orig: 32, 32
   offset: 0, 0
   index: 3
-mujerderecha
+mujerderechaQuieta
   rotate: false
   xy: 239, 2
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
-  index: 1
+  index: -1
 mujerderecha
   rotate: false
   xy: 273, 2
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
-  index: 2
+  index: 1
 mujerderecha
   rotate: false
   xy: 307, 2
@@ -73,13 +73,13 @@ mujerderecha
   orig: 32, 32
   offset: 0, 0
   index: 3
-mujerizquierda
+mujerizquierdaQuieta
   rotate: false
   xy: 341, 2
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
-  index: 2
+  index: -1
 mujerizquierda
   rotate: false
   xy: 375, 2
