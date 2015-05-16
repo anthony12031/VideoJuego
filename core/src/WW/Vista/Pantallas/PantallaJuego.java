@@ -28,8 +28,7 @@ public class PantallaJuego implements Screen {
 		// Inicialzar el mapa y la camara organizar el mapa en pantalla
 		mapa = FabricaMapas.getMapa(Gdx.files.internal("Mapas/MapaUno.tmx")
 				.toString(), 0, 0);
-		jugador = new RepresentacionEnteMagico(new Sprite(
-				Graficos.atlas.findRegion("mujerarriba")), 100, 100);
+		jugador = new RepresentacionEnteMagico("mujer");
 		camara = new OrthographicCamera();
 		camara.position.x = Graficos.ANCHO * 0.5f;
 		camara.position.y = Graficos.ALTO * 0.5f;
@@ -90,7 +89,7 @@ public class PantallaJuego implements Screen {
 
 	@Override
 	public void hide() {
-
+		dispose();
 	}
 
 	@Override

@@ -7,6 +7,8 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 public class RepresentacionGrafica extends Sprite{
 
+	
+	protected String identificador;
 	protected boolean movizq = false, movdere = false, movaba = false,
 			movarri = false;
 	protected static float duracion_animacion = 0.2f, tiempo_animacion = 10.0f,
@@ -25,14 +27,20 @@ public class RepresentacionGrafica extends Sprite{
 
 	public void setMovizq(boolean movizq) {
 		this.movizq = movizq;
+		if(!movizq)
+			System.out.println(identificador);
+			this.animacion_frame = animaciones.get(identificador+"izquierdaQuieta").getKeyFrame(0.0f);
 	}
 
 	public boolean isMovdere() {
 		return movdere;
+		
 	}
 
 	public void setMovdere(boolean movdere) {
 		this.movdere = movdere;
+		if(!movdere)
+			this.animacion_frame = animaciones.get(identificador+"derechaQuieta").getKeyFrame(0.0f);
 	}
 
 	public boolean isMovaba() {
@@ -41,6 +49,9 @@ public class RepresentacionGrafica extends Sprite{
 
 	public void setMovaba(boolean movaba) {
 		this.movaba = movaba;
+		if(!movaba)
+			this.animacion_frame = animaciones.get(identificador+"abajoQuieta").getKeyFrame(0.0f);
+		
 	}
 
 	public boolean isMovarri() {
@@ -49,6 +60,8 @@ public class RepresentacionGrafica extends Sprite{
 
 	public void setMovarri(boolean movarri) {
 		this.movarri = movarri;
+		if(!movarri)
+			this.animacion_frame = animaciones.get(identificador+"arribaQuieta").getKeyFrame(0.0f);
 	}
 
 	public static float getDuracion_animacion() {
@@ -90,6 +103,16 @@ public class RepresentacionGrafica extends Sprite{
 	public void setAnimacion_frame(TextureRegion animacion_frame) {
 		this.animacion_frame = animacion_frame;
 	}
+
+	protected String getIdentificador() {
+		return identificador;
+	}
+
+	protected void setIdentificador(String identificador) {
+		this.identificador = identificador;
+	}
+
+	
 	
 	
 	

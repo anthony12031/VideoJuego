@@ -2,12 +2,11 @@ package gestoresRecursos;
 
 import java.util.HashMap;
 
-import WW.Vista.Graficos;
-
 import com.badlogic.gdx.graphics.g2d.Animation;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.Animation.PlayMode;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas.AtlasRegion;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.utils.Array;
 
 public class GestorAnimaciones {
@@ -33,6 +32,7 @@ public class GestorAnimaciones {
 		
 		
 	}
+	
 	
 	
 	public static GestorAnimaciones getInstancia(){
