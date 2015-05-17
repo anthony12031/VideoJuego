@@ -1,13 +1,13 @@
 package WW.Representacion.Producto;
 
 import gestoresRecursos.GestorAnimaciones;
-
 import WW.Vista.Graficos;
 import WW.Vista.Pantallas.PantallaJuego;
 import WW.Vista.Pantallas.CompositeFlyweigth.Dibujable;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 
 public class RepresentacionEnteMagico extends RepresentacionGrafica implements
@@ -65,6 +65,7 @@ public class RepresentacionEnteMagico extends RepresentacionGrafica implements
 					.getKeyFrame(tiempo_animacion);
 		}
 	}
+
 
 	private void init() {
 

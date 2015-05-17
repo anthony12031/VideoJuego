@@ -15,6 +15,7 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.badlogic.gdx.math.Vector3;
+import com.badlogic.gdx.utils.viewport.FillViewport;
 
 public class PantallaJuego implements Screen {
 
@@ -22,6 +23,9 @@ public class PantallaJuego implements Screen {
 	private Mapa mapa;
 	private static RepresentacionEnteMagico jugador;
 	public static OrthographicCamera camara;
+	private FillViewport viewport;
+	float world_width = Gdx.graphics.getWidth(),world_height = Gdx.graphics.getHeight();
+	ShapeRenderer shapeRenderer;
 
 	@Override
 	public void show() {
@@ -30,10 +34,15 @@ public class PantallaJuego implements Screen {
 				.toString(), 0, 0);
 		jugador = new RepresentacionEnteMagico("mujer");
 		camara = new OrthographicCamera();
-		camara.position.x = Graficos.ANCHO * 0.5f;
-		camara.position.y = Graficos.ALTO * 0.5f;
+		camara.position.x = world_width * 0.5f;
+		camara.position.y = world_height * 0.5f;
+		viewport = new FillViewport(world_width,world_height,camara);
+		
 		controlador = new Controlador(this);
 		Gdx.input.setInputProcessor(controlador);
+		viewport.apply();
+		shapeRenderer = new ShapeRenderer();
+		shapeRenderer.setProjectionMatrix(camara.combined);
 	}
 
 	@Override
@@ -45,7 +54,24 @@ public class PantallaJuego implements Screen {
 		mapa.dibujar();
 		jugador.dibujar();
 		actualizarCamara();
+		debug();
 		camara.update();
+
+		
+		
+		
+	}
+	
+	public void debug(){
+		
+			   shapeRenderer.begin(ShapeType.Line);
+
+			   shapeRenderer.setColor(Color.RED);
+			   shapeRenderer.line(-world_width, 0.0f, world_width, 0.0f);
+			   shapeRenderer.line(0.0f, -world_height, 0.0f, world_height);
+			   
+			   shapeRenderer.end();
+			
 	}
 
 	private void actualizarCamara() {
@@ -53,20 +79,20 @@ public class PantallaJuego implements Screen {
 		Vector3 pos = new Vector3(jugador.getX(), jugador.getY(), 0.0f);
 		Vector3 posScreen = camara.project(pos);
 
-		if (posScreen.y + jugador.getHeight() >= Graficos.ALTO) {
+		if (posScreen.y + jugador.getHeight() >= Gdx.graphics.getHeight() ) {
 			camara.position.y += (posScreen.y * 0.5 - jugador.getHeight());
 		}
 
-		if (posScreen.x + jugador.getWidth() >= Graficos.ANCHO) {
+		if (posScreen.x + jugador.getWidth() >= Gdx.graphics.getWidth() ) {
 			camara.position.x += posScreen.x * 0.5 - jugador.getWidth();
 		}
 
 		if (posScreen.x - jugador.getWidth() <= 0.0f) {
-			camara.position.x -= Graficos.ANCHO * 0.5;
+			camara.position.x -= Gdx.graphics.getWidth() * 0.5;
 		}
 
 		if (posScreen.y - jugador.getHeight() <= 0.0f) {
-			camara.position.y -= Graficos.ALTO * 0.5;
+			camara.position.y -=  Gdx.graphics.getHeight() * 0.5;
 		}
 
 
@@ -76,6 +102,7 @@ public class PantallaJuego implements Screen {
 	public void resize(int width, int height) {
 		camara.viewportHeight = height;
 		camara.viewportWidth = width;
+		viewport.update(width, height);
 		camara.update();
 	}
 
@@ -98,6 +125,7 @@ public class PantallaJuego implements Screen {
 		mapa.getRenderer().dispose();
 		Graficos.spritebatch.dispose();
 		Graficos.atlas.dispose();
+		shapeRenderer.dispose();
 	}
 
 	public RepresentacionEnteMagico getJugador() {

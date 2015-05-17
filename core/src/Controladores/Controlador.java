@@ -44,6 +44,7 @@ public class Controlador implements InputProcessor{
 		switch(keycode){
 		case 19 : //arriba
 			pantalla.getJugador().setMovarri(false);
+
 		
 			break;
 		case 20 : //abajo
@@ -56,7 +57,6 @@ public class Controlador implements InputProcessor{
 			break;
 		case 22 : //derecha
 			pantalla.getJugador().setMovdere(false);
-			
 			break;
 		
 		}
