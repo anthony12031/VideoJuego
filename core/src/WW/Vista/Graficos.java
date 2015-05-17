@@ -18,7 +18,7 @@ public class Graficos extends Game {
 	@Override
 	public void create() {
 		spritebatch = new SpriteBatch();
-		atlas = new TextureAtlas(Gdx.files.internal("Personajes.pack"));
+		atlas = new TextureAtlas(Gdx.files.internal("SpriteSheets/Personajes.pack"));
 		pantalla_Juego = new PantallaJuego();
 		setScreen(pantalla_Juego);
 		

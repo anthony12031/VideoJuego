@@ -1,17 +1,20 @@
 package WW.Representacion.Producto;
 
 import gestoresRecursos.GestorAnimaciones;
+import EnteMagico.EnteMagico;
+import ObserverMediator.Observer;
+import ObserverMediator.Sujeto;
 import WW.Vista.Graficos;
 import WW.Vista.Pantallas.PantallaJuego;
 import WW.Vista.Pantallas.CompositeFlyweigth.Dibujable;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
+
 
 
 public class RepresentacionEnteMagico extends RepresentacionGrafica implements
-		Dibujable {
+		Dibujable,Observer {
 
 	public RepresentacionEnteMagico(String identificador) {
 		super(new Sprite(Graficos.atlas.findRegion(identificador + "arriba")));
@@ -80,6 +83,12 @@ public class RepresentacionEnteMagico extends RepresentacionGrafica implements
 		animacion_frame = animaciones.get(identificador + "arribaQuieta")
 				.getKeyFrame(0.0f);
 
+	}
+
+	@Override
+	public void actualizar(Sujeto subject) {
+		EnteMagico ente = (EnteMagico) subject;
+		this.velocidad = ente.getVelocidadMovimiento();
 	}
 
 }

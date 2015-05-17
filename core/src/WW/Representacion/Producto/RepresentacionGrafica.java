@@ -28,7 +28,6 @@ public class RepresentacionGrafica extends Sprite{
 	public void setMovizq(boolean movizq) {
 		this.movizq = movizq;
 		if(!movizq)
-			System.out.println(identificador);
 			this.animacion_frame = animaciones.get(identificador+"izquierdaQuieta").getKeyFrame(0.0f);
 	}
 
@@ -110,6 +109,11 @@ public class RepresentacionGrafica extends Sprite{
 
 	protected void setIdentificador(String identificador) {
 		this.identificador = identificador;
+	}
+
+	public void dibujar() {
+		
+		
 	}
 
 	

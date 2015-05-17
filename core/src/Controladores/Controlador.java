@@ -2,8 +2,6 @@ package Controladores;
 
 import WW.Vista.Pantallas.PantallaJuego;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.InputProcessor;
 
 public class Controlador implements InputProcessor{
@@ -20,17 +18,17 @@ public class Controlador implements InputProcessor{
 		
 		switch(keycode){
 		case 19 : //arriba
-			pantalla.getJugador().setMovarri(true);
+			pantalla.getRep_jugador().setMovarri(true);
 			//pantalla.getJugador().correr = false;
 			break;
 		case 20 : //abajo
-			pantalla.getJugador().setMovaba(true);
+			pantalla.getRep_jugador().setMovaba(true);
 			break;
 		case 21 : //izquierda
-			pantalla.getJugador().setMovizq(true);
+			pantalla.getRep_jugador().setMovizq(true);
 			break;
 		case 22 : //derecha
-			pantalla.getJugador().setMovdere(true);
+			pantalla.getRep_jugador().setMovdere(true);
 			break;
 		
 		}
@@ -43,20 +41,20 @@ public class Controlador implements InputProcessor{
 		
 		switch(keycode){
 		case 19 : //arriba
-			pantalla.getJugador().setMovarri(false);
+			pantalla.getRep_jugador().setMovarri(false);
 
 		
 			break;
 		case 20 : //abajo
-			pantalla.getJugador().setMovaba(false);
+			pantalla.getRep_jugador().setMovaba(false);
 			
 			break;
 		case 21 : //izquierda
-			pantalla.getJugador().setMovizq(false);
+			pantalla.getRep_jugador().setMovizq(false);
 			
 			break;
 		case 22 : //derecha
-			pantalla.getJugador().setMovdere(false);
+			pantalla.getRep_jugador().setMovdere(false);
 			break;
 		
 		}
