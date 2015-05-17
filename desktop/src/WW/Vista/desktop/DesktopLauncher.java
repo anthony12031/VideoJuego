@@ -18,7 +18,6 @@ public class DesktopLauncher {
 		config.height=ALTO;
 		config.title="Video Juego";
 		Graficos graficos = new Graficos();
-		graficos.ANCHO = ANCHO; graficos.ALTO = ALTO;
 		new LwjglApplication(graficos, config);
 	}
 }

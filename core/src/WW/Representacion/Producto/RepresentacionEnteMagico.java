@@ -1,19 +1,21 @@
 package WW.Representacion.Producto;
 
 import gestoresRecursos.GestorAnimaciones;
-
-import java.util.HashMap;
-
 import WW.Vista.Graficos;
 import WW.Vista.Pantallas.PantallaJuego;
 import WW.Vista.Pantallas.CompositeFlyweigth.Dibujable;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 
 public class RepresentacionEnteMagico extends RepresentacionGrafica implements
 		Dibujable {
 
+	public TextureRegion derecha,izquierda,arriba,abajo;
+	
+	
 	public RepresentacionEnteMagico(Sprite sprite, float posx, float posy) {
 		super(sprite);
 		this.setPosition(posx, posy);
@@ -23,11 +25,17 @@ public class RepresentacionEnteMagico extends RepresentacionGrafica implements
 	private void init() {
 
 		String animaciones_[] = { "mujerarriba", "mujerabajo",
-				"mujerizquierda", "mujerderecha" };
+				"mujerizquierda", "mujerderecha", "mujerderechaQuieta",
+				"mujerizquierdaQuieta", "mujerarribaQuieta", "mujerabajoQuieta" };
 		GestorAnimaciones.getInstancia().cargarAnimaciones(Graficos.atlas,
 				animaciones_, animaciones, duracion_animacion);
 		animacion_frame = animaciones.get("mujerabajo").getKeyFrame(
 				tiempo_animacion);
+		
+		derecha = getAnimaciones().get("mujerderechaQuieta").getKeyFrame(0.0f);
+		izquierda = getAnimaciones().get("mujerizquierdaQuieta").getKeyFrame(0.0f);
+		abajo = getAnimaciones().get("mujerabajoQuieta").getKeyFrame(0.0f);
+		arriba = getAnimaciones().get("mujerarribaQuieta").getKeyFrame(0.0f);
 	}
 
 	@Override

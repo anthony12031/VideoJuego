@@ -14,7 +14,6 @@ public class Graficos extends Game {
 	public static SpriteBatch spritebatch ;
 	public static TextureAtlas atlas;
 	private PantallaJuego pantalla_Juego;
-	public static int ANCHO,ALTO;
 	
 	@Override
 	public void create() {

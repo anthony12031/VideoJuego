@@ -44,15 +44,19 @@ public class Controlador implements InputProcessor{
 		switch(keycode){
 		case 19 : //arriba
 			pantalla.getJugador().setMovarri(false);
+			pantalla.getJugador().setAnimacion_frame(pantalla.getJugador().arriba);
 			break;
 		case 20 : //abajo
 			pantalla.getJugador().setMovaba(false);
+			pantalla.getJugador().setAnimacion_frame(pantalla.getJugador().abajo);
 			break;
 		case 21 : //izquierda
 			pantalla.getJugador().setMovizq(false);
+			pantalla.getJugador().setAnimacion_frame(pantalla.getJugador().izquierda);
 			break;
 		case 22 : //derecha
 			pantalla.getJugador().setMovdere(false);
+			pantalla.getJugador().setAnimacion_frame(pantalla.getJugador().derecha);
 			break;
 		
 		}
