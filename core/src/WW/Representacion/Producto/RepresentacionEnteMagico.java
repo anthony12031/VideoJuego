@@ -15,28 +15,8 @@ public class RepresentacionEnteMagico extends RepresentacionGrafica implements
 
 	public TextureRegion derecha,izquierda,arriba,abajo;
 	
-	
-	public RepresentacionEnteMagico(Sprite sprite, float posx, float posy) {
-		super(sprite);
-		this.setPosition(posx, posy);
-		init();
-	}
 
-	private void init() {
 
-		String animaciones_[] = { "mujerarriba", "mujerabajo",
-				"mujerizquierda", "mujerderecha", "mujerderechaQuieta",
-				"mujerizquierdaQuieta", "mujerarribaQuieta", "mujerabajoQuieta" };
-		GestorAnimaciones.getInstancia().cargarAnimaciones(Graficos.atlas,
-				animaciones_, animaciones, duracion_animacion);
-		animacion_frame = animaciones.get("mujerabajo").getKeyFrame(
-				tiempo_animacion);
-		
-		derecha = getAnimaciones().get("mujerderechaQuieta").getKeyFrame(0.0f);
-		izquierda = getAnimaciones().get("mujerizquierdaQuieta").getKeyFrame(0.0f);
-		abajo = getAnimaciones().get("mujerabajoQuieta").getKeyFrame(0.0f);
-		arriba = getAnimaciones().get("mujerarribaQuieta").getKeyFrame(0.0f);
-	}
 
 	@Override
 	public void dibujar() {
@@ -55,26 +35,5 @@ public class RepresentacionEnteMagico extends RepresentacionGrafica implements
 
 		tiempo_animacion += Gdx.graphics.getDeltaTime();
 
-		if (movarri) {
-			this.setY(y + velocidad * Gdx.graphics.getDeltaTime());
-			animacion_frame = animaciones.get("mujerarriba").getKeyFrame(
-					tiempo_animacion);
-		}
-		if (movaba) {
-			this.setY(y - velocidad * Gdx.graphics.getDeltaTime());
-			animacion_frame = animaciones.get("mujerabajo").getKeyFrame(
-					tiempo_animacion);
-		}
-		if (movdere) {
-			this.setX(x + velocidad * Gdx.graphics.getDeltaTime());
-			animacion_frame = animaciones.get("mujerderecha").getKeyFrame(
-					tiempo_animacion);
-		}
-		if (movizq) {
-			this.setX(x - velocidad * Gdx.graphics.getDeltaTime());
-			animacion_frame = animaciones.get("mujerizquierda").getKeyFrame(
-					tiempo_animacion);
-		}
-	}
 
 }
