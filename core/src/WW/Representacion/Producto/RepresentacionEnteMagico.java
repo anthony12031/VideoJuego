@@ -1,7 +1,10 @@
 package WW.Representacion.Producto;
 
-import gestoresRecursos.GestorAnimaciones;
+import gestoresRecursos.FabricaAnimaciones;
+import EfectosVisuales.FabricaEfectos;
 import EnteMagico.EnteMagico;
+import Fisica.FabricaCuerpos;
+import Mundo.Mundo;
 import ObserverMediator.Observer;
 import ObserverMediator.Sujeto;
 import WW.Vista.Graficos;
@@ -9,12 +12,17 @@ import WW.Vista.Pantallas.PantallaJuego;
 import WW.Vista.Pantallas.CompositeFlyweigth.Dibujable;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.g2d.ParticleEffect;
 import com.badlogic.gdx.graphics.g2d.Sprite;
-
-
+import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.physics.box2d.Body;
+import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
 
 public class RepresentacionEnteMagico extends RepresentacionGrafica implements
-		Dibujable,Observer {
+		Dibujable, Observer {
+
+	ParticleEffect efecto;
+	Body cuerpo;
 
 	public RepresentacionEnteMagico(String identificador) {
 		super(new Sprite(Graficos.atlas.findRegion(identificador + "arriba")));
@@ -23,7 +31,8 @@ public class RepresentacionEnteMagico extends RepresentacionGrafica implements
 		init();
 	}
 
-	public RepresentacionEnteMagico(String identificador,Sprite sprite, float posx, float posy) {
+	public RepresentacionEnteMagico(String identificador, Sprite sprite,
+			float posx, float posy) {
 		super(sprite);
 		super.identificador = identificador;
 		this.setPosition(posx, posy);
@@ -37,7 +46,13 @@ public class RepresentacionEnteMagico extends RepresentacionGrafica implements
 		Graficos.spritebatch.setProjectionMatrix(PantallaJuego.camara.combined);
 		Graficos.spritebatch.begin();
 		Graficos.spritebatch.draw(animacion_frame, this.getX(), this.getY());
+		if (efecto != null) {
+			efecto.draw(Graficos.spritebatch, Gdx.graphics.getDeltaTime());
+			if (efecto.isComplete())
+				efecto = null;
+		}
 		Graficos.spritebatch.end();
+
 	}
 
 	private void actualizar() {
@@ -67,8 +82,11 @@ public class RepresentacionEnteMagico extends RepresentacionGrafica implements
 			animacion_frame = animaciones.get(identificador + "izquierda")
 					.getKeyFrame(tiempo_animacion);
 		}
+		
+		Vector2 pos = new Vector2(this.getX()+this.getWidth()*0.5f,this.getY()+this.getHeight()*0.5f); 
+		
+		cuerpo.setTransform(pos,0.0f);
 	}
-
 
 	private void init() {
 
@@ -78,10 +96,14 @@ public class RepresentacionEnteMagico extends RepresentacionGrafica implements
 				identificador + "abajoQuieta", identificador + "derechaQuieta",
 				identificador + "izquierdaQuieta" };
 
-		GestorAnimaciones.getInstancia().cargarAnimaciones(Graficos.atlas,
-				animaciones_, animaciones, duracion_animacion);
-		animacion_frame = animaciones.get(identificador + "arribaQuieta")
+		FabricaAnimaciones.getInstancia().cargarAnimaciones(identificador,
+				Graficos.atlas, animaciones_, animaciones, duracion_animacion);
+		animacion_frame = animaciones.get(identificador + "abajoQuieta")
 				.getKeyFrame(0.0f);
+		cuerpo = FabricaCuerpos.getInstancia().crearCuerpoRectangular(
+				BodyType.DynamicBody, this.getX(), this.getY(),
+				this.getWidth(), this.getHeight(), Mundo.getMundo_fisico());
+		cuerpo.setBullet(true);
 
 	}
 
@@ -89,6 +111,12 @@ public class RepresentacionEnteMagico extends RepresentacionGrafica implements
 	public void actualizar(Sujeto subject) {
 		EnteMagico ente = (EnteMagico) subject;
 		this.velocidad = ente.getVelocidadMovimiento();
+		this.efecto = FabricaEfectos.getInstancia().getEfecto(
+				ente.getAtaque_actual());
+		if (efecto != null) {
+			this.efecto.setPosition(this.getX(), this.getY());
+			this.efecto.start();
+		}
 	}
 
 }

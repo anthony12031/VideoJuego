@@ -22,7 +22,14 @@ public abstract class EnteMagico extends Sujeto implements Cloneable {
 	protected float velocidadAtaque;
 	protected float velocidadMovimiento;
 	protected boolean visibilidad;
+	private String ataque_actual;
 	
+	
+	
+	public void atacar(String ataque){
+	this.setAtaque_actual(ataque);
+	notificar();
+	}
 	
 	
 	public float getVelx() {
@@ -130,5 +137,15 @@ public abstract class EnteMagico extends Sujeto implements Cloneable {
 	
 	
 	public abstract Object clonar();
+
+
+	public String getAtaque_actual() {
+		return ataque_actual;
+	}
+
+
+	public void setAtaque_actual(String ataque_actual) {
+		this.ataque_actual = ataque_actual;
+	}
 	
 }

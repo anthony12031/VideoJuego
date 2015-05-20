@@ -63,13 +63,17 @@ public class Controlador implements InputProcessor{
 
 	@Override
 	public boolean keyTyped(char character) {
-		// TODO Auto-generated method stub
+		switch(character){
+		case 'z': pantalla.modo_debug = !pantalla.modo_debug; break;
+		
+		
+		}
 		return false;
 	}
 
 	@Override
 	public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-		// TODO Auto-generated method stub
+		pantalla.getJugador().atacar("magia");
 		return false;
 	}
 

@@ -11,8 +11,8 @@ public class RepresentacionGrafica extends Sprite{
 	protected String identificador;
 	protected boolean movizq = false, movdere = false, movaba = false,
 			movarri = false;
-	protected static float duracion_animacion = 0.2f, tiempo_animacion = 10.0f,
-			velocidad = 100.0f;
+	protected static float duracion_animacion = 0.2f, tiempo_animacion = 10.0f;
+	protected float velocidad = 100.0f;
 	protected HashMap<String, Animation> animaciones;
 	protected TextureRegion animacion_frame;
 	
@@ -79,12 +79,12 @@ public class RepresentacionGrafica extends Sprite{
 		RepresentacionGrafica.tiempo_animacion = tiempo_animacion;
 	}
 
-	public static float getVelocidad() {
+	public  float getVelocidad() {
 		return velocidad;
 	}
 
-	public static void setVelocidad(float velocidad) {
-		RepresentacionGrafica.velocidad = velocidad;
+	public  void setVelocidad(float velocidad) {
+		this.velocidad = velocidad;
 	}
 
 	public HashMap<String, Animation> getAnimaciones() {
@@ -111,10 +111,7 @@ public class RepresentacionGrafica extends Sprite{
 		this.identificador = identificador;
 	}
 
-	public void dibujar() {
-		
-		
-	}
+	
 
 	
 	
