@@ -30,6 +30,7 @@ public class PantallaJuego implements Screen {
 	public static boolean modo_debug = false;
 	int[] fondo ={0};
 	int[] capados ={1};
+	int[] capatres ={2};
 	ShapeRenderer shapeRenderer;
 
 	
@@ -88,6 +89,7 @@ public class PantallaJuego implements Screen {
 		mapa.dibujarCapa(fondo);
 		rep_jugador.dibujar();
 		mapa.dibujarCapa(capados);
+		mapa.dibujarCapa(capatres);
 		camara.actualizar(rep_jugador);
 		// If the game doesn't render at 60fps, the physics will go mental. That'll be covered in Box2DFixedTimeStepSample
 		world.step(1/100f, 6, 2);

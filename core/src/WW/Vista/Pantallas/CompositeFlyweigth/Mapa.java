@@ -22,7 +22,7 @@ public class Mapa extends Composite implements Dibujable {
 	private int posX;
 	private int posY;
 	float tilewidth = 32;
-	
+
 	public Mapa(String path) {
 		this.path = path;
 		TmxMapLoader loader = new TmxMapLoader();
@@ -34,24 +34,29 @@ public class Mapa extends Composite implements Dibujable {
 	private void configurarColisiones() {
 
 		MapLayer capa_colision = map.getLayers().get("Colision");
-		MapObjects objetos = capa_colision.getObjects();
 
-		for (int i = 0; i < objetos.getCount(); i++) {
+		if (capa_colision != null) { /* Existe una capa de colisiones */
+			MapObjects objetos = capa_colision.getObjects();
 
-			MapObject objeto = objetos.get(i);
-			if (objeto instanceof RectangleMapObject) {
+			for (int i = 0; i < objetos.getCount(); i++) {
 
-				RectangleMapObject rect = (RectangleMapObject) objeto;
-				Vector3 pos = new Vector3(rect.getRectangle().getX(), rect.getRectangle().getY(),0.0f);
-				PantallaJuego.camara.project(pos);
-				
-				FabricaCuerpos.getInstancia().crearCuerpoRectangular(BodyType.StaticBody,
-						pos.x, pos.y,
-						rect.getRectangle().getWidth(),
-						rect.getRectangle().getHeight(),
-						Mundo.getMundo_fisico());
+				MapObject objeto = objetos.get(i);
+				if (objeto instanceof RectangleMapObject) {
 
+					RectangleMapObject rect = (RectangleMapObject) objeto;
+					Vector3 pos = new Vector3(rect.getRectangle().getX(), rect
+							.getRectangle().getY(), 0.0f);
+					PantallaJuego.camara.project(pos);
+
+					FabricaCuerpos.getInstancia().crearCuerpoRectangular(
+							BodyType.StaticBody, pos.x, pos.y,
+							rect.getRectangle().getWidth(),
+							rect.getRectangle().getHeight(),
+							Mundo.getMundo_fisico());
+
+				}
 			}
+
 		}
 
 	}
