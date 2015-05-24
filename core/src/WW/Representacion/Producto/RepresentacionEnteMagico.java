@@ -57,7 +57,9 @@ public class RepresentacionEnteMagico extends RepresentacionGrafica implements
 
 	private void actualizar() {
 
-		float x = this.getX();
+		estado_actual.actualizar(this);
+		
+		/*float x = this.getX();
 		float y = this.getY();
 
 		tiempo_animacion += Gdx.graphics.getDeltaTime();
@@ -85,7 +87,7 @@ public class RepresentacionEnteMagico extends RepresentacionGrafica implements
 		
 		Vector2 pos = new Vector2(this.getX()+this.getWidth()*0.5f,this.getY()+this.getHeight()*0.5f); 
 		
-		cuerpo.setTransform(pos,0.0f);
+		cuerpo.setTransform(pos,0.0f);*/
 	}
 
 	private void init() {
