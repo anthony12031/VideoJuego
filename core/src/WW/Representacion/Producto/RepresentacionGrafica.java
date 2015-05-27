@@ -1,19 +1,24 @@
 package WW.Representacion.Producto;
 
 import java.util.HashMap;
+import java.util.Stack;
 
 import State.CaminandoState;
 import State.RepGraficaState;
 
 import com.badlogic.gdx.graphics.g2d.Animation;
+import com.badlogic.gdx.graphics.g2d.ParticleEffect;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.physics.box2d.Body;
 
 public class RepresentacionGrafica extends Sprite {
 
+
+	protected Animation animacion_ataque;
+	public ParticleEffect efecto;
 	public Body cuerpo;
-	protected RepGraficaState estado_actual;
+	private RepGraficaState estado_actual;
 	protected String identificador;
 	protected boolean movizq = false, movdere = false, movaba = false,
 			movarri = false;
@@ -22,13 +27,14 @@ public class RepresentacionGrafica extends Sprite {
 	protected HashMap<String, Animation> animaciones;
 	protected TextureRegion animacion_frame;
 
+	
 	public RepresentacionGrafica(Sprite sprite) {
 		super(sprite);
 		/*
 		 * Estado por defecto caminando se puede cambiar el estado en tiempo de
 		 * ejecucuion
 		 */
-		estado_actual = CaminandoState.getInstancia();
+		setEstado_actual(CaminandoState.getInstancia());
 		animaciones = new HashMap<String, Animation>();
 	}
 
@@ -124,6 +130,22 @@ public class RepresentacionGrafica extends Sprite {
 
 	public void setIdentificador(String identificador) {
 		this.identificador = identificador;
+	}
+
+	public RepGraficaState getEstado_actual() {
+		return estado_actual;
+	}
+
+	public void setEstado_actual(RepGraficaState estado_actual) {
+		this.estado_actual = estado_actual;
+	}
+
+	public Animation getAnimacion_ataque() {
+		return animacion_ataque;
+	}
+
+	public void setAnimacion_ataque(Animation animacion_ataque) {
+		this.animacion_ataque = animacion_ataque;
 	}
 
 }

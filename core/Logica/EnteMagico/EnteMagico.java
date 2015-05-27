@@ -25,10 +25,10 @@ public abstract class EnteMagico extends Sujeto implements Cloneable {
 	private String ataque_actual;
 	
 	
-	
 	public void atacar(String ataque){
 	this.setAtaque_actual(ataque);
 	notificar();
+	this.setAtaque_actual(null);
 	}
 	
 	
@@ -147,5 +147,9 @@ public abstract class EnteMagico extends Sujeto implements Cloneable {
 	public void setAtaque_actual(String ataque_actual) {
 		this.ataque_actual = ataque_actual;
 	}
+
+
+
+
 	
 }

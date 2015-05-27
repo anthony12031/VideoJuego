@@ -23,7 +23,6 @@ public class PantallaJuego implements Screen {
 	
 	private EnteMagico jugador;
 	private RepresentacionEnteMagico rep_jugador;
-	private Mundo mundo;
 	private Controlador controlador;
 	private Mapa mapa;
 	public static Camara camara;
@@ -31,35 +30,14 @@ public class PantallaJuego implements Screen {
 	int[] fondo ={0};
 	int[] capados ={1};
 	int[] capatres ={2};
-	ShapeRenderer shapeRenderer;
-
-	
-	// General Box2D
-		Box2DDebugRenderer debugRenderer;
-		World world;
-	
-		
-	
 	
 	@Override
 	public void show() {
 		
-		// Create Physics World
-			world = Mundo.getMundo_fisico();
-
-			// Tweak debug information
-			debugRenderer = new Box2DDebugRenderer(
-					true, /* draw bodies */
-					false, /* don't draw joints */
-					false, /* draw aabbs */
-					true, /* draw inactive bodies */
-					false, /* don't draw velocities */
-					true /* draw contacts */);
 		
-		// Crear el mundo y el jugador principal
-		mundo = Mundo.abrirMundo();
-		jugador = mundo.crear("mago_Slytherin");
-		setRep_jugador(new RepresentacionEnteMagico("mujer"));
+		Mundo.abrirMundo();
+		jugador = Mundo.mundoMagico.crear("mago_Slytherin");
+		rep_jugador = new RepresentacionEnteMagico("mujer");
 		/*
 		 * Utilizar patron oberver y mediator entre la logica y su
 		 * representacion grafica
@@ -67,6 +45,7 @@ public class PantallaJuego implements Screen {
 		Mediator.getInstancia().registrar(jugador, getRep_jugador());
 
 		jugador.setVelocidadMovimiento(85.0f);
+		
 		camara = new Camara();
 		// Inicialzar el mapa y la camara organizar el mapa en pantalla
 		mapa = FabricaMapas.getMapa(Gdx.files.internal("Mapas/MapaUno.tmx")
@@ -91,10 +70,6 @@ public class PantallaJuego implements Screen {
 		mapa.dibujarCapa(capados);
 		mapa.dibujarCapa(capatres);
 		camara.actualizar(rep_jugador);
-		// If the game doesn't render at 60fps, the physics will go mental. That'll be covered in Box2DFixedTimeStepSample
-		world.step(1/100f, 6, 2);
-		if(modo_debug)
-		debugRenderer.render(world, camara.combined);
 		camara.update();
 
 	}
@@ -127,8 +102,6 @@ public class PantallaJuego implements Screen {
 		Graficos.spritebatch.dispose();
 		Graficos.atlas.dispose();
 		getRep_jugador().getTexture().dispose();
-		world.dispose();
-		FabricaCuerpos.getInstancia().dispose();
 	}
 
 	public EnteMagico getJugador() {

@@ -19,8 +19,8 @@ public class Mapa extends Composite implements Dibujable {
 	private TiledMap map;
 	private OrthogonalTiledMapRenderer renderer;
 	private String path;
-	private int posX;
-	private int posY;
+	private int posX ;
+	private int posY ;
 	float tilewidth = 32;
 
 	public Mapa(String path) {
@@ -28,42 +28,14 @@ public class Mapa extends Composite implements Dibujable {
 		TmxMapLoader loader = new TmxMapLoader();
 		map = loader.load(this.path);
 		setRenderer(new OrthogonalTiledMapRenderer(map));
-		configurarColisiones();
 	}
 
-	private void configurarColisiones() {
-
-		MapLayer capa_colision = map.getLayers().get("Colision");
-
-		if (capa_colision != null) { /* Existe una capa de colisiones */
-			MapObjects objetos = capa_colision.getObjects();
-
-			for (int i = 0; i < objetos.getCount(); i++) {
-
-				MapObject objeto = objetos.get(i);
-				if (objeto instanceof RectangleMapObject) {
-
-					RectangleMapObject rect = (RectangleMapObject) objeto;
-					Vector3 pos = new Vector3(rect.getRectangle().getX(), rect
-							.getRectangle().getY(), 0.0f);
-					PantallaJuego.camara.project(pos);
-
-					FabricaCuerpos.getInstancia().crearCuerpoRectangular(
-							BodyType.StaticBody, pos.x, pos.y,
-							rect.getRectangle().getWidth(),
-							rect.getRectangle().getHeight(),
-							Mundo.getMundo_fisico());
-
-				}
-			}
-
-		}
-
-	}
 
 	@Override
 	public void dibujar() {
+		
 		renderer.render();
+		
 
 	}
 

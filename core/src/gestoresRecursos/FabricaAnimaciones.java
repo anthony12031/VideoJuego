@@ -18,14 +18,7 @@ public class FabricaAnimaciones {
 	private FabricaAnimaciones(){
 		lista_animaciones = new HashMap<String, HashMap<String,Animation>>();
 	}
-	
-	public HashMap<String,Animation> getAnimaciones(String identificador){
-		HashMap<String,Animation> animaciones = lista_animaciones.get(identificador);
-		if(animaciones == null)
-			System.out.println("animacion "+identificador+" no ha sido cargada");
-		return animaciones;
-	}
-	
+
 	
 	public void cargarAnimaciones(String identificador,TextureAtlas atlas,String[] nombres,HashMap<String,Animation> estructura_datos,float duracion_animacion){
 		

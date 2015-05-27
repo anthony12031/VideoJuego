@@ -1,0 +1,47 @@
+
+poderes.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+ataque_elecrico
+  rotate: false
+  xy: 1, 35
+  size: 255, 65
+  orig: 255, 65
+  offset: 0, 0
+  index: 6
+ataque_elecrico
+  rotate: false
+  xy: 258, 35
+  size: 249, 65
+  orig: 249, 65
+  offset: 0, 0
+  index: 5
+ataque_elecrico
+  rotate: false
+  xy: 509, 35
+  size: 60, 65
+  orig: 60, 65
+  offset: 0, 0
+  index: 3
+ataque_elecrico
+  rotate: false
+  xy: 571, 35
+  size: 60, 65
+  orig: 60, 65
+  offset: 0, 0
+  index: 4
+ataque_elecrico
+  rotate: false
+  xy: 633, 35
+  size: 59, 65
+  orig: 59, 65
+  offset: 0, 0
+  index: 2
+ataque_elecrico
+  rotate: false
+  xy: 1, 1
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: 1

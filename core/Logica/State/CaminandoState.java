@@ -1,49 +1,43 @@
 package State;
 
-import com.badlogic.gdx.Gdx;
-
 import WW.Representacion.Producto.RepresentacionGrafica;
+import WW.Vista.Graficos;
+import WW.Vista.Pantallas.PantallaJuego;
 
-public class CaminandoState implements RepGraficaState{
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.math.Vector2;
+
+public class CaminandoState extends RepGraficaState {
 
 	private static CaminandoState instancia = null;
-	
-	private CaminandoState(){
+
+	/* Singleton el objeto sera reutilizado en otras criaturas */
+
+	private CaminandoState() {
+
+	}
+
+
+	public void dibujar(RepresentacionGrafica rep) {
+		
+		super.actualizar(rep);
+		
+		Graficos.spritebatch.setProjectionMatrix(PantallaJuego.camara.combined);
+		Graficos.spritebatch.begin();
+		super.dibujar(rep);
+		Graficos.spritebatch.end();
 		
 	}
 	
-	@Override
-	public void actualizar(RepresentacionGrafica rep) {
-		
-		float x = rep.getX();
-		float y = rep.getY();
 
-		float delta_tiempo = rep.getTiempo_animacion() + Gdx.graphics.getDeltaTime();
-		
-		rep.setTiempo_animacion(delta_tiempo);
-
-		if (rep.isMovarri()) {
-			rep.setY(y + rep.getVelocidad() * Gdx.graphics.getDeltaTime());
-			rep.setAnimacion_frame(rep.getAnimaciones().get(rep.getIdentificador() + "arriba").getKeyFrame(rep.getTiempo_animacion())); 
-		}
-		if (rep.isMovaba()) {
-			rep.setY(y - rep.getVelocidad() * Gdx.graphics.getDeltaTime());
-			rep.setAnimacion_frame(rep.getAnimaciones().get(rep.getIdentificador() + "abajo").getKeyFrame(rep.getTiempo_animacion())); 
-		}
-		if (rep.isMovdere()) {
-			rep.setX(x + rep.getVelocidad() * Gdx.graphics.getDeltaTime());
-			rep.setAnimacion_frame(rep.getAnimaciones().get(rep.getIdentificador() + "derecha").getKeyFrame(rep.getTiempo_animacion())); 
-		}
-		if (rep.isMovizq()) {
-			rep.setX(x - rep.getVelocidad() * Gdx.graphics.getDeltaTime());
-			rep.setAnimacion_frame(rep.getAnimaciones().get(rep.getIdentificador() + "izquierda").getKeyFrame(rep.getTiempo_animacion())); 
-		}
-		
-	}
-	
-	public static CaminandoState getInstancia(){
-		if(instancia == null) instancia = new CaminandoState();
+	public static CaminandoState getInstancia() {
+		if (instancia == null)
+			instancia = new CaminandoState();
+		System.out.println("Estado actual Caminando");
 		return instancia;
 	}
+
+
+
 
 }
