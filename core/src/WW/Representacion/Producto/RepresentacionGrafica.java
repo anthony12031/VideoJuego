@@ -22,7 +22,10 @@ public class RepresentacionGrafica extends Sprite {
 	protected String identificador;
 	protected boolean movizq = false, movdere = false, movaba = false,
 			movarri = false;
+<<<<<<< HEAD
 	protected boolean atacando = false;
+=======
+>>>>>>> 596930794c696359b6f2011f447cf7862a1ad6a7
 	protected float duracion_animacion = 0.2f, tiempo_animacion = 10.0f;
 	protected float velocidad = 100.0f;
 	protected HashMap<String, Animation> animaciones;
@@ -148,6 +151,7 @@ public class RepresentacionGrafica extends Sprite {
 	public void setAnimacion_ataque(Animation animacion_ataque) {
 		this.animacion_ataque = animacion_ataque;
 	}
+<<<<<<< HEAD
 
 	public boolean isAtacando() {
 		return atacando;
@@ -164,5 +168,7 @@ public class RepresentacionGrafica extends Sprite {
 	public void setEfecto(ParticleEffect efecto) {
 		this.efecto = efecto;
 	}
+=======
+>>>>>>> 596930794c696359b6f2011f447cf7862a1ad6a7
 
 }

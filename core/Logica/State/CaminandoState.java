@@ -1,7 +1,11 @@
 package State;
 
 import WW.Representacion.Producto.RepresentacionGrafica;
+<<<<<<< HEAD
 import WW.Vista.Modelo;
+=======
+import WW.Vista.Graficos;
+>>>>>>> 596930794c696359b6f2011f447cf7862a1ad6a7
 import WW.Vista.Pantallas.PantallaJuego;
 
 import com.badlogic.gdx.Gdx;
@@ -22,10 +26,17 @@ public class CaminandoState extends RepGraficaState {
 		
 		super.actualizar(rep);
 		
+<<<<<<< HEAD
 		Modelo.spritebatch.setProjectionMatrix(PantallaJuego.camara.combined);
 		Modelo.spritebatch.begin();
 		super.dibujar(rep);
 		Modelo.spritebatch.end();
+=======
+		Graficos.spritebatch.setProjectionMatrix(PantallaJuego.camara.combined);
+		Graficos.spritebatch.begin();
+		super.dibujar(rep);
+		Graficos.spritebatch.end();
+>>>>>>> 596930794c696359b6f2011f447cf7862a1ad6a7
 		
 	}
 	

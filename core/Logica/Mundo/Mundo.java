@@ -12,8 +12,11 @@ import com.badlogic.gdx.physics.box2d.World;
 public class Mundo {
 	
 	public static Mundo mundoMagico=null;
+<<<<<<< HEAD
 	private static World mundofisico = null;
 	
+=======
+>>>>>>> 596930794c696359b6f2011f447cf7862a1ad6a7
 	private HashMap<String, EnteMagico> criaturas;
 	private String nombre;
 	
@@ -32,6 +35,7 @@ public class Mundo {
 	}
 	
 	public static Mundo abrirMundo(){
+		System.out.println("Creando el mundo");
 		if(mundoMagico==null){
 			mundoMagico=new Mundo();
 		}
@@ -48,6 +52,7 @@ public class Mundo {
 		return (EnteMagico) (objeto != null ? objeto.clonar() : null);
 	}
 
+<<<<<<< HEAD
 	public static World getMundoFisico() {
 		if(mundofisico == null) mundofisico = new World(new Vector2(0,0),true);
 		return mundofisico;
@@ -56,5 +61,7 @@ public class Mundo {
 	public static void setMundoFisico(World mundo_fisico) {
 		Mundo.mundofisico = mundo_fisico;
 	}
+=======
+>>>>>>> 596930794c696359b6f2011f447cf7862a1ad6a7
 	
 }

@@ -19,8 +19,8 @@ public class Mapa implements Dibujable {
 	private TiledMap map;
 	private OrthogonalTiledMapRenderer renderer;
 	private String path;
-	private int posX;
-	private int posY;
+	private int posX ;
+	private int posY ;
 	float tilewidth = 32;
 
 	public Mapa(String path) {
@@ -28,9 +28,9 @@ public class Mapa implements Dibujable {
 		TmxMapLoader loader = new TmxMapLoader();
 		map = loader.load(this.path);
 		setRenderer(new OrthogonalTiledMapRenderer(map));
-		configurarColisiones();
 	}
 
+<<<<<<< HEAD
 	private void configurarColisiones() {
 
 		MapLayer capa_colision = map.getLayers().get("Colision");
@@ -60,10 +60,14 @@ public class Mapa implements Dibujable {
 		}
 
 	}
+=======
+>>>>>>> 596930794c696359b6f2011f447cf7862a1ad6a7
 
 	@Override
 	public void dibujar() {
+		
 		renderer.render();
+		
 
 	}
 

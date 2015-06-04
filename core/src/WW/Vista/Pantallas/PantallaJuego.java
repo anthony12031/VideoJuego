@@ -13,12 +13,20 @@ import com.badlogic.gdx.graphics.GL20;
 
 public class PantallaJuego implements Screen {
 
+<<<<<<< HEAD
 	// private EnteMagico jugador;
 	// private RepresentacionEnteMagico rep_jugador;
+=======
+	
+	
+	private EnteMagico jugador;
+	private RepresentacionEnteMagico rep_jugador;
+>>>>>>> 596930794c696359b6f2011f447cf7862a1ad6a7
 	private Controlador controlador;
 	private Mapa mapa;
 	public static Camara camara;
 	public static boolean modo_debug = false;
+<<<<<<< HEAD
 	int[] fondo = { 0 };
 	int[] capados = { 1 };
 	int[] capatres = { 2 };
@@ -32,6 +40,27 @@ public class PantallaJuego implements Screen {
 
 		Mundo.abrirMundo();
 
+=======
+	int[] fondo ={0};
+	int[] capados ={1};
+	int[] capatres ={2};
+	
+	@Override
+	public void show() {
+		
+		
+		Mundo.abrirMundo();
+		jugador = Mundo.mundoMagico.crear("mago_Slytherin");
+		rep_jugador = new RepresentacionEnteMagico("mujer");
+		/*
+		 * Utilizar patron oberver y mediator entre la logica y su
+		 * representacion grafica
+		 */
+		Mediator.getInstancia().registrar(jugador, getRep_jugador());
+
+		jugador.setVelocidadMovimiento(85.0f);
+		
+>>>>>>> 596930794c696359b6f2011f447cf7862a1ad6a7
 		camara = new Camara();
 		// Inicialzar el mapa y la camara organizar el mapa en pantalla
 		mapa = FabricaMapas.getMapa(Gdx.files.internal("Mapas/MapaUno.tmx").toString(), 0, 0);
@@ -53,8 +82,12 @@ public class PantallaJuego implements Screen {
 		mapa.dibujarCapa(fondo);
 		mapa.dibujarCapa(capados);
 		mapa.dibujarCapa(capatres);
+<<<<<<< HEAD
 		controlador.getModelo().getRepJugador().dibujar();
 		camara.actualizar(controlador.getModelo().getRepJugador());
+=======
+		camara.actualizar(rep_jugador);
+>>>>>>> 596930794c696359b6f2011f447cf7862a1ad6a7
 		camara.update();
 
 	}
@@ -84,9 +117,31 @@ public class PantallaJuego implements Screen {
 	public void dispose() {
 		mapa.getMap().dispose();
 		mapa.getRenderer().dispose();
+<<<<<<< HEAD
 		Modelo.spritebatch.dispose();
 		Modelo.atlas.dispose();
 		controlador.getModelo().getRepJugador().getTexture().dispose();
+=======
+		Graficos.spritebatch.dispose();
+		Graficos.atlas.dispose();
+		getRep_jugador().getTexture().dispose();
+	}
+
+	public EnteMagico getJugador() {
+		return jugador;
+	}
+
+	public void setJugador(EnteMagico jugador) {
+		this.jugador = jugador;
+	}
+
+	public RepresentacionEnteMagico getRep_jugador() {
+		return rep_jugador;
+	}
+
+	public void setRep_jugador(RepresentacionEnteMagico rep_jugador) {
+		this.rep_jugador = rep_jugador;
+>>>>>>> 596930794c696359b6f2011f447cf7862a1ad6a7
 	}
 
 }

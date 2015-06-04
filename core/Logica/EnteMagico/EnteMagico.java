@@ -20,9 +20,57 @@ public abstract class EnteMagico extends Sujeto implements Cloneable,Serializabl
 	protected boolean visibilidad;
 	private String ataque_actual;
 	
+<<<<<<< HEAD
 	public void atacar(String ataque){
 		this.setAtaque_actual(ataque);
 		notificar();
+=======
+	
+	public void atacar(String ataque){
+	this.setAtaque_actual(ataque);
+	notificar();
+	this.setAtaque_actual(null);
+	}
+	
+	
+	public float getVelx() {
+		return velx;
+	}
+	public void setVelx(float velx) {
+		this.velx = velx;
+	}
+	public float getVely() {
+		return vely;
+	}
+	public void setVely(float vely) {
+		this.vely = vely;
+	}
+
+	
+	public float getAncho() {
+		return ancho;
+	}
+	public void setAncho(float ancho) {
+		this.ancho = ancho;
+	}
+	public float getAlto() {
+		return alto;
+	}
+	public void setAlto(float alto) {
+		this.alto = alto;
+	}
+	public float getPosX() {
+		return posX;
+	}
+	public void setPosX(float posX) {
+		this.posX = posX;
+	}
+	public float getPosY() {
+		return posY;
+	}
+	public void setPosY(float posY) {
+		this.posY = posY;
+>>>>>>> 596930794c696359b6f2011f447cf7862a1ad6a7
 	}
 	
 	public String getNombre() {
@@ -105,6 +153,10 @@ public abstract class EnteMagico extends Sujeto implements Cloneable,Serializabl
 		this.ataque_actual = ataque_actual;
 		notificar();
 	}
+
+
+
+
 	
 	public abstract Object clonar();
 }
