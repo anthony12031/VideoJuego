@@ -4,11 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.Vector2;
 
 import WW.Representacion.Producto.RepresentacionGrafica;
-<<<<<<< HEAD
 import WW.Vista.Modelo;
-=======
-import WW.Vista.Graficos;
->>>>>>> 596930794c696359b6f2011f447cf7862a1ad6a7
 
 public abstract class RepGraficaState {
 
@@ -22,11 +18,7 @@ public abstract class RepGraficaState {
 	public void dibujar(RepresentacionGrafica rep) {
 		
 		/* dibujar el ente Magico */
-<<<<<<< HEAD
 		Modelo.spritebatch.draw(rep.getAnimacion_frame(), rep.getX(), rep.getY());
-=======
-		Graficos.spritebatch.draw(rep.getAnimacion_frame(), rep.getX(), rep.getY());
->>>>>>> 596930794c696359b6f2011f447cf7862a1ad6a7
 		
 	}
 
