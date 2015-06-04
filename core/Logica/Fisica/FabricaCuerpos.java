@@ -84,8 +84,8 @@ public class FabricaCuerpos implements Disposable{
 			return instancia;
 		}
 
-		public static  void setInstancia(FabricaCuerpos instancia) {
-			instancia = instancia;
+		public static  void setInstancia(FabricaCuerpos inst) {
+			instancia = inst;
 		}
 
 		@Override

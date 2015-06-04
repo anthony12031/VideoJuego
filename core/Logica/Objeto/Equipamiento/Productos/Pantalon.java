@@ -8,6 +8,4 @@ public class Pantalon extends Equipable {
 		
 	}
 
-
-
 }

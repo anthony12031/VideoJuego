@@ -1,5 +1,6 @@
 package Objeto.Equipamiento.Productos;
 
+
 public class Zapatilla extends Equipable {
 
 	@Override

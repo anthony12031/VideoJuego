@@ -1,8 +1,12 @@
 package Objeto.Armas.Productos;
 
 
-public abstract class Varita extends ArmaLargoAlcance {
+public class Varita extends Arma{
 
-    public abstract void recargarMagia();
+	@Override
+	public void usarObjeto() {
+		
+	}
+	
 
 }

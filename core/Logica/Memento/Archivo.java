@@ -8,59 +8,66 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+
 import javax.swing.JOptionPane;
 
-public class Archivo {
-	public static final String path="jugadores.obj";//ruta del archivo, constante durante todo el programa
-	private static ArrayList<Memento> jugadores=new ArrayList<Memento>();//ArrayList que guarda todos lo jugadores registrados
-	private static File archivo=new File(path);//archivo de guardado y consulta
+public class Archivo{
 	
-	static public synchronized boolean agregar(Memento jugador){//agregar jugador al archivo
+	public static final String path="jugadores.obj";
+	private ArrayList<Memento> jugadores;
+	private File archivo;
+	
+	private static Archivo persistencia=null;
+	private ObjectInputStream streamInObjeto;
+	
+	public Archivo() {
+		jugadores=new ArrayList<Memento>();
+		archivo=new File(path);
+	}
+	
+	public boolean agregar(Memento jugador)
+	{
 		jugadores=consultar();
 		archivo.delete();
 		try{
 			archivo=new File(path);
-			FileOutputStream streamArchivo=new FileOutputStream(archivo);
-			ObjectOutputStream streamObjeto=new ObjectOutputStream(streamArchivo);
-			for(int i=0;i<jugadores.size();i++){//reinsecion de jugadores ya registrados
-				streamObjeto.writeObject(jugadores.get(i));
+			ObjectOutputStream  streamOutObjeto=new ObjectOutputStream(new FileOutputStream(archivo));
+			for(int i=0;i<jugadores.size();i++){
+				streamOutObjeto.writeObject(jugadores.get(i));
 			}
-			streamObjeto.writeObject(jugador);//insecion de ultimo jugador registrado
-			streamObjeto.close();
+			streamOutObjeto.writeObject(jugador);
+			streamOutObjeto.close();
 			return true;
 		}
 		catch(FileNotFoundException e){
-			JOptionPane.showMessageDialog(null, "El archivo no se encuentra o esta da�ado");
+			JOptionPane.showMessageDialog(null, "El archivo no se encuentra o esta corrompido");
 			return false;
 		}
-		catch(IOException e){
-			JOptionPane.showMessageDialog(null, "Error en la escritura del archivo");
+		catch (Exception e) {
+			JOptionPane.showMessageDialog(null, e.toString());
 			return false;
 		}
 	}
-	/**
-	 * @return Devuleve un ArrayList con todos lo jugadores encontrados en el archivo
-	 * */
-	public static synchronized ArrayList<Memento> consultar() {//consulta de jugadores
+	
+	public ArrayList<Memento> consultar()
+	{
 		archivo=new File(path);
 		ArrayList<Memento> jugadores=new ArrayList<Memento>();
 		try{
-			FileInputStream streamArchivo=new FileInputStream(archivo);
-			ObjectInputStream streamObjeto=new ObjectInputStream(streamArchivo);
-			while(true){//carga de jugadores en un ArrayList
-				Memento p=(Memento)streamObjeto.readObject();
+			streamInObjeto = new ObjectInputStream(new FileInputStream(archivo));
+			while(true){
+				Memento p=(Memento)streamInObjeto.readObject();
 				jugadores.add(p);
 			}
 		}
 		catch(ClassNotFoundException e){
-			
 		}
 		catch(IOException e){
 		}
 		return jugadores;
 	}
 
-	public static synchronized Memento consultar(String nickName, String pass){
+	public Memento consultar(String nickName, String pass){
 		ArrayList<Memento> lista=consultar();
 		for(int i=0;i<lista.size();i++){
 			if(lista.get(i).getUsuario().getNickName().equals(nickName) && lista.get(i).getUsuario().getPassWord().equals(pass)){
@@ -68,6 +75,50 @@ public class Archivo {
 			}
 		}
 		return null;
+	}
+	
+	public static Archivo getPersistencia(){
+		if(persistencia==null){
+			persistencia=new Archivo();
+		}
+		return persistencia;
+	}
+	
+	public boolean consultar(String nickName){
+		ArrayList<Memento> lista=consultar();
+		for(int i=0;i<lista.size();i++){
+			if(lista.get(i).getUsuario().getNickName().equals(nickName)){
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public boolean actualizar(String nickName, Memento jugador){
+		jugadores=consultar();
+		archivo.delete();
+		try{
+			archivo=new File(path);
+			ObjectOutputStream  streamOutObjeto=new ObjectOutputStream(new FileOutputStream(archivo));
+			for(int i=0;i<jugadores.size();i++){
+				if(nickName.equals(jugadores.get(i).getUsuario().getNickName())){
+					streamOutObjeto.writeObject(jugador);
+				}
+				else{
+					streamOutObjeto.writeObject(jugadores.get(i));
+				}
+			}
+			streamOutObjeto.close();
+			return true;
+		}
+		catch(FileNotFoundException e){
+			JOptionPane.showMessageDialog(null, "El archivo no se encuentra o esta corrompido");
+			return false;
+		}
+		catch (Exception e) {
+			JOptionPane.showMessageDialog(null, e.toString());
+			return false;
+		}
 	}
 	
 }

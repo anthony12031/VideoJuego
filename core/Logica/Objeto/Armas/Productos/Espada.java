@@ -1,7 +1,7 @@
 package Objeto.Armas.Productos;
 
 
-public class Espada extends ArmaCortoAlcance {
+public class Espada extends Arma {
 
 	@Override
 	public void usarObjeto() {

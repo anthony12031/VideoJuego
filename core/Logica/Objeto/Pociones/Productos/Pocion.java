@@ -1,4 +1,4 @@
-/*package Objeto.Pociones.Productos;
+package Objeto.Pociones.Productos;
 
 import Habilidades.Productos.Habilidad;
 import Objeto.Objeto;
@@ -20,4 +20,4 @@ public class Pocion extends Objeto {
 		habilidadAsociada.actuar();
 	}
 	
-}*/
+}

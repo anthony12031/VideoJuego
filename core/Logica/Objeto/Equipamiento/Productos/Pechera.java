@@ -8,6 +8,4 @@ public class Pechera extends Equipable {
 		
 	}
 
-
-
 }

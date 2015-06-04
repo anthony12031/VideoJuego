@@ -1,19 +1,12 @@
 package EnteMagico;
 
-import ObserverMediator.Mediator;
+public abstract class CriaturaMagica extends EnteMagico implements Runnable{
 
-public abstract class CriaturaMagica extends EnteMagico{
-	
-
-	
-
-	protected int direccionMovimiento = 1;
-	
-	public int getDireccionMovimiento(){
-		return direccionMovimiento;
+	@Override
+	public void run(){
+		while(this.vida>0){
+			
+		}
 	}
 	
-	public void setDireccionMovimiento(int direccionMovimiento){
-		this.direccionMovimiento=direccionMovimiento;
-	}
 }

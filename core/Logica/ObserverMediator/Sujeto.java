@@ -6,7 +6,6 @@ public abstract class Sujeto {
 
 	private Mediator mediador;
 	
-	
 	public Sujeto(){
 	
 	}

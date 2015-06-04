@@ -14,7 +14,7 @@ import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
 
-public class Mapa extends Composite implements Dibujable {
+public class Mapa implements Dibujable {
 
 	private TiledMap map;
 	private OrthogonalTiledMapRenderer renderer;
@@ -52,7 +52,7 @@ public class Mapa extends Composite implements Dibujable {
 							BodyType.StaticBody, pos.x, pos.y,
 							rect.getRectangle().getWidth(),
 							rect.getRectangle().getHeight(),
-							Mundo.getMundo_fisico());
+							Mundo.getMundoFisico());
 
 				}
 			}

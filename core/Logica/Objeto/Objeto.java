@@ -1,6 +1,11 @@
 package Objeto;
 
-public abstract class Objeto {
+import java.io.Serializable;
+
+public abstract class Objeto implements Serializable{
+
+	protected static final long serialVersionUID = 1L;
+	
 	protected String nombreObjeto;
 
 	public String getNombreObjeto() {
@@ -12,4 +17,5 @@ public abstract class Objeto {
 	}
 	
 	public abstract void usarObjeto();
+	
 }

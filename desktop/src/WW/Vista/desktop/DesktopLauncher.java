@@ -1,8 +1,6 @@
 package WW.Vista.desktop;
 
-
-
-import WW.Vista.Graficos;
+import WW.Vista.Modelo;
 
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
@@ -13,10 +11,12 @@ public class DesktopLauncher {
 	
 	public static void main (String[] arg) {
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
+		config.disableAudio=true;
+		//config.fullscreen=true;
 		config.width=ANCHO;
 		config.height=ALTO;
 		config.title="Video Juego";
-		Graficos graficos = new Graficos();
+		Modelo graficos = new Modelo();
 		new LwjglApplication(graficos, config);
 	}
 }

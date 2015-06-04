@@ -1,91 +1,34 @@
 package WW.Representacion.Producto;
 
 import gestoresRecursos.FabricaAnimaciones;
+
 import EfectosVisuales.FabricaEfectos;
-import EnteMagico.EnteMagico;
-import Fisica.FabricaCuerpos;
-import Mundo.Mundo;
+import EnteMagico.*;
 import ObserverMediator.Observer;
 import ObserverMediator.Sujeto;
-import WW.Vista.Graficos;
-import WW.Vista.Pantallas.PantallaJuego;
+import State.AtacarState;
+import WW.Vista.Modelo;
 import WW.Vista.Pantallas.CompositeFlyweigth.Dibujable;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.g2d.ParticleEffect;
 import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.physics.box2d.Body;
-import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
 
 public class RepresentacionEnteMagico extends RepresentacionGrafica implements
 		Dibujable, Observer {
 
-	ParticleEffect efecto;
-	Body cuerpo;
 
 	public RepresentacionEnteMagico(String identificador) {
-		super(new Sprite(Graficos.atlas.findRegion(identificador + "arriba")));
+		super(new Sprite(Modelo.atlas.findRegion(identificador + "arriba")));
 		super.identificador = identificador;
 		this.setPosition(100, 100);
 		init();
 	}
 
-	public RepresentacionEnteMagico(String identificador, Sprite sprite,
-			float posx, float posy) {
-		super(sprite);
-		super.identificador = identificador;
-		this.setPosition(posx, posy);
-		init();
-	}
 
 	@Override
 	public void dibujar() {
-
-		actualizar();
-		Graficos.spritebatch.setProjectionMatrix(PantallaJuego.camara.combined);
-		Graficos.spritebatch.begin();
-		Graficos.spritebatch.draw(animacion_frame, this.getX(), this.getY());
-		if (efecto != null) {
-			efecto.draw(Graficos.spritebatch, Gdx.graphics.getDeltaTime());
-			if (efecto.isComplete())
-				efecto = null;
-		}
-		Graficos.spritebatch.end();
-
-	}
-
-	private void actualizar() {
-
-		float x = this.getX();
-		float y = this.getY();
-
-		tiempo_animacion += Gdx.graphics.getDeltaTime();
-
-		if (movarri) {
-			this.setY(y + velocidad * Gdx.graphics.getDeltaTime());
-			animacion_frame = animaciones.get(identificador + "arriba")
-					.getKeyFrame(tiempo_animacion);
-		}
-		if (movaba) {
-			this.setY(y - velocidad * Gdx.graphics.getDeltaTime());
-			animacion_frame = animaciones.get(identificador + "abajo")
-					.getKeyFrame(tiempo_animacion);
-		}
-		if (movdere) {
-			this.setX(x + velocidad * Gdx.graphics.getDeltaTime());
-			animacion_frame = animaciones.get(identificador + "derecha")
-					.getKeyFrame(tiempo_animacion);
-		}
-		if (movizq) {
-			this.setX(x - velocidad * Gdx.graphics.getDeltaTime());
-			animacion_frame = animaciones.get(identificador + "izquierda")
-					.getKeyFrame(tiempo_animacion);
-		}
+	
+		getEstado_actual().dibujar(this);
 		
-		Vector2 pos = new Vector2(this.getX()+this.getWidth()*0.5f,this.getY()+this.getHeight()*0.5f); 
-		
-		cuerpo.setTransform(pos,0.0f);
 	}
 
 	private void init() {
@@ -97,26 +40,32 @@ public class RepresentacionEnteMagico extends RepresentacionGrafica implements
 				identificador + "izquierdaQuieta" };
 
 		FabricaAnimaciones.getInstancia().cargarAnimaciones(identificador,
-				Graficos.atlas, animaciones_, animaciones, duracion_animacion);
+				Modelo.atlas, animaciones_,animaciones, duracion_animacion);
 		animacion_frame = animaciones.get(identificador + "abajoQuieta")
 				.getKeyFrame(0.0f);
-		cuerpo = FabricaCuerpos.getInstancia().crearCuerpoRectangular(
-				BodyType.DynamicBody, this.getX(), this.getY(),
-				this.getWidth(), this.getHeight(), Mundo.getMundo_fisico());
-		cuerpo.setBullet(true);
-
+		
+		
+		
 	}
 
 	@Override
 	public void actualizar(Sujeto subject) {
+	
+		System.out.println("actualizando observer");
 		EnteMagico ente = (EnteMagico) subject;
 		this.velocidad = ente.getVelocidadMovimiento();
-		this.efecto = FabricaEfectos.getInstancia().getEfecto(
-				ente.getAtaque_actual());
-		if (efecto != null) {
-			this.efecto.setPosition(this.getX(), this.getY());
-			this.efecto.start();
+		System.out.println(((Mago) ente).getHabilidadUsar().getKeyRep());
+		this.setEfecto(FabricaEfectos.getInstancia().getEfecto(((Mago) ente).getHabilidadUsar().getKeyRep()));
+		
+		if (getEfecto() != null) {
+			this.getEfecto().setPosition(((Mago) ente).getHabilidadUsar().getFocoX(), ((Mago) ente).getHabilidadUsar().getFocoY());
+			this.getEfecto().start();
+			this.getEfecto().reset();
+			this.setEstado_actual(AtacarState.getInstancia());
 		}
+		
+		
+		
 	}
 
 }
