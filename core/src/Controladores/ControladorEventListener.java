@@ -1,9 +1,7 @@
 package Controladores;
 
-import EnteMagico.*;
-import Habilidades.Builder.DirectorHabilidad;
-import Habilidades.Builder.Fuego;
-import Habilidades.Builder.MocoMurcielago;
+import EnteMagico.Creador;
+import EnteMagico.EnteMagico;
 import Memento.Memento;
 import Memento.Usuario;
 import ObserverMediator.Mediator;
@@ -67,27 +65,11 @@ public class ControladorEventListener implements EventListener {
 				user.setPassWord(pass);
 				user.setPosicionX(100);
 				user.setPosicionY(100);
-				
 				modelo.setUser(user);
-				
-				
-				DirectorHabilidad director=new DirectorHabilidad();
-				
-				director.setHabilidadBuilder(new Fuego());
-				director.contruirHabilidad();
-				
-				((Mago) modelo.getUser().getEnte()).setHabilidadQ(director.getHabilidad());
-				
-				director.setHabilidadBuilder(new MocoMurcielago());
-				director.contruirHabilidad();
-				
-				((Mago) modelo.getUser().getEnte()).setHabilidadW(director.getHabilidad());
-				
 				try {
 					modelo.getArchivo().agregar(user.getMemento());
 				} catch (CloneNotSupportedException ex) {}
 				modelo.setRepJugador(new RepresentacionEnteMagico(modelo.getUser().getKeyRep()));
-				
 				System.out.println(modelo.getRepJugador());
 				Mediator.getInstancia().registrar(modelo.getUser().getEnte(), modelo.getRepJugador());
 				modelo.setScreen(modelo.getPantallaJuego());

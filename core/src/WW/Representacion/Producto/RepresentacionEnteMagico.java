@@ -2,14 +2,6 @@ package WW.Representacion.Producto;
 
 import gestoresRecursos.FabricaAnimaciones;
 
-<<<<<<< HEAD
-import EfectosVisuales.FabricaEfectos;
-import EnteMagico.*;
-import ObserverMediator.Observer;
-import ObserverMediator.Sujeto;
-import State.AtacarState;
-import WW.Vista.Modelo;
-=======
 import java.util.Stack;
 
 import EfectosVisuales.FabricaEfectos;
@@ -17,8 +9,7 @@ import EnteMagico.EnteMagico;
 import ObserverMediator.Observer;
 import ObserverMediator.Sujeto;
 import State.AtacarState;
-import WW.Vista.Graficos;
->>>>>>> 596930794c696359b6f2011f447cf7862a1ad6a7
+import WW.Vista.Modelo;
 import WW.Vista.Pantallas.CompositeFlyweigth.Dibujable;
 
 import com.badlogic.gdx.graphics.g2d.Sprite;
@@ -65,29 +56,14 @@ public class RepresentacionEnteMagico extends RepresentacionGrafica implements
 		System.out.println("actualizando observer");
 		EnteMagico ente = (EnteMagico) subject;
 		this.velocidad = ente.getVelocidadMovimiento();
-<<<<<<< HEAD
-		System.out.println(((Mago) ente).getHabilidadUsar().getKeyRep());
-		this.setEfecto(FabricaEfectos.getInstancia().getEfecto(((Mago) ente).getHabilidadUsar().getKeyRep()));
-		
-		if (getEfecto() != null) {
-			this.getEfecto().setPosition(((Mago) ente).getHabilidadUsar().getFocoX(), ((Mago) ente).getHabilidadUsar().getFocoY());
-			this.getEfecto().start();
-			this.getEfecto().reset();
-=======
-		this.efecto = FabricaEfectos.getInstancia().getEfecto(
-				ente.getAtaque_actual());
+		this.efecto = FabricaEfectos.getInstancia().getEfecto(ente.getAtaque_actual());
 		if (efecto != null) {
 			this.efecto.setPosition(this.getX(), this.getY());
 			this.efecto.start();
->>>>>>> 596930794c696359b6f2011f447cf7862a1ad6a7
 			this.setEstado_actual(AtacarState.getInstancia());
 		}
 		
 		
-<<<<<<< HEAD
-		
-=======
->>>>>>> 596930794c696359b6f2011f447cf7862a1ad6a7
 	}
 
 }

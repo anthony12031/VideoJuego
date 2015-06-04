@@ -16,7 +16,6 @@ public class FabricaEfectos {
 
 	public ParticleEffect getEfecto(String efect) {
 		ParticleEffect efecto = lista_efectos.get(efect);
-		System.out.println(efecto);
 		if (efecto == null) {
 			efecto = new ParticleEffect();
 			try {

@@ -19,8 +19,8 @@ public class Mapa implements Dibujable {
 	private TiledMap map;
 	private OrthogonalTiledMapRenderer renderer;
 	private String path;
-	private int posX ;
-	private int posY ;
+	private int posX;
+	private int posY;
 	float tilewidth = 32;
 
 	public Mapa(String path) {
@@ -30,44 +30,9 @@ public class Mapa implements Dibujable {
 		setRenderer(new OrthogonalTiledMapRenderer(map));
 	}
 
-<<<<<<< HEAD
-	private void configurarColisiones() {
-
-		MapLayer capa_colision = map.getLayers().get("Colision");
-
-		if (capa_colision != null) { /* Existe una capa de colisiones */
-			MapObjects objetos = capa_colision.getObjects();
-
-			for (int i = 0; i < objetos.getCount(); i++) {
-
-				MapObject objeto = objetos.get(i);
-				if (objeto instanceof RectangleMapObject) {
-
-					RectangleMapObject rect = (RectangleMapObject) objeto;
-					Vector3 pos = new Vector3(rect.getRectangle().getX(), rect
-							.getRectangle().getY(), 0.0f);
-					PantallaJuego.camara.project(pos);
-
-					FabricaCuerpos.getInstancia().crearCuerpoRectangular(
-							BodyType.StaticBody, pos.x, pos.y,
-							rect.getRectangle().getWidth(),
-							rect.getRectangle().getHeight(),
-							Mundo.getMundoFisico());
-
-				}
-			}
-
-		}
-
-	}
-=======
->>>>>>> 596930794c696359b6f2011f447cf7862a1ad6a7
-
 	@Override
 	public void dibujar() {
-		
 		renderer.render();
-		
 
 	}
 
@@ -80,7 +45,7 @@ public class Mapa implements Dibujable {
 	}
 
 	public void setPosX(int posX) {
-		this.posX = posX;
+		this.posX =posX;
 	}
 
 	public int getPosY() {
